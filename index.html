@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="box-game">
+      <div class="box-question">
+        <div class="wrap">
+          <h1 class="warning">WRONG ANSWER</h1>
+          <h1 class="congrats">YOU WON !!</h1>
+          <p class="score"></p>
+        </div>
+
+        <h1 class="topic">choose the correct color</h1>
+        <div class="box-color"></div>
+        <div class="box-option"></div>
+        <button class="end-game">Restart</button>
+      </div>
+    </div>
+    <script>
+      let colorBox = document.querySelector(".box-color");
+      let coloropt = document.querySelector(".box-option");
+      let Score = document.querySelector(".score");
+      let warning = document.querySelector(".warning");
+      let congrats = document.querySelector(".congrats");
+      let restartBtn = document.querySelector(".end-game");
+      let colorArray = [
+        { color: "red", name: "red" },
+        { color: "blue", name: "blue" },
+        { color: "green", name: "green" },
+        { color: "pink", name: "pink" },
+        { color: "orange", name: "orange" },
+        { color: "yellow", name: "yellow" },
+      ];
+      let colorques = ["red", "blue", "green", "pink", "orange", "yellow"];
+
+      let playerScore = 0;
+      warning.style.display = "none";
+      congrats.style.display = "none";
+      Score.innerText = ` score : ${playerScore}/60`;
+      let random = Math.floor(Math.random() * colorques.length);
+      colorBox.style.backgroundColor = `${colorques[random]}`;
+      colorArray.forEach((el) => {
+        let { color, name } = el;
+        let btn = document.createElement("button");
+        btn.style.backgroundColor = color;
+        btn.className = "opt-btn";
+        btn.innerText = name;
+        coloropt.appendChild(btn);
+        btn.onclick = () => {
+          if (
+            btn.innerText == colorBox.style.backgroundColor &&
+            playerScore < 60
+          ) {
+            warning.style.display = "none";
+            let random = Math.floor(Math.random() * colorques.length);
+            colorBox.style.backgroundColor = `${colorques[random]}`;
+            playerScore += 10;
+            Score.innerText = ` score : ${playerScore}/60`;
+          } else {
+            warning.style.display = "block";
+
+            if (playerScore >= 60) {
+              warning.style.display = "none";
+              congrats.style.display = "block";
+            }
+          }
+        };
+        restartBtn.onclick = () => {
+          playerScore = 0;
+          Score.innerText = ` score : ${playerScore}/60`;
+          let random = Math.floor(Math.random() * colorques.length);
+          colorBox.style.backgroundColor = `${colorques[random]}`;
+          congrats.style.display = "none";
+        };
+      });
+    </script>
+  </body>
+</html>
