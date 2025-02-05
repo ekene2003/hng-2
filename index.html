@@ -10,14 +10,16 @@
     <div class="box-game">
       <div class="box-question">
         <div class="wrap">
-          <h1 class="warning">WRONG ANSWER</h1>
-          <h1 class="congrats">YOU WON !!</h1>
-          <p class="score"></p>
+          <h1 class="warning" data-testid="gameStatus">WRONG ANSWER</h1>
+          <h1 class="congrats" data-testid="gameStatus">YOU WON !!</h1>
+          <p class="score" data-testid="score"></p>
         </div>
 
-        <h1 class="topic">choose the correct color</h1>
-        <div class="box-color"></div>
-        <div class="box-option"></div>
+        <h1 class="topic" data-testid="gameInstructions">
+          Guess the correct color
+        </h1>
+        <div class="box-color" data-testid="colorBox"></div>
+        <div class="box-option" data-testid="colorOption"></div>
         <button class="end-game">Restart</button>
       </div>
     </div>
