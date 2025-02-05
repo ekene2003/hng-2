@@ -65,6 +65,7 @@
             Score.innerText = ` score : ${playerScore}/60`;
           } else {
             warning.style.display = "block";
+            warning.classList.add("vanish");
 
             if (playerScore >= 60) {
               warning.style.display = "none";
